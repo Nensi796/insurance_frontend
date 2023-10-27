@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomButton from '../../Components/Buttons/Button';
 import { Modal, Form, Input, Select } from "antd";
 
@@ -6,9 +6,20 @@ import { Modal, Form, Input, Select } from "antd";
 const IndustriesOptions = [{ value: "Chemical", label: "Chemical" }, { value: "Mechanical", label: "Mechanical" }]
 const StateOptions = [{ value: "CA", label: "CA" }, { value: "AI", label: "AI" }]
 const CoverageOptions = [{ value: "Life", label: "Life" }, { value: "Health", label: "Health" }]
+const StatusOptions = [{ value: "active", label: "Active" }, { value: "inactive", label: "Inactive" }]
 
-export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
+export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) {
 
+
+    const [programs, setPrograms] = useState([])
+
+    const onFinish = (values) => {
+        console.log(values);
+        setPrograms([...programs, values])
+        // lifting statup 
+        getData([...programs, values])
+    }
+    console.log(programs);
     return (
         <>
 
@@ -37,7 +48,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
                     initialValues={{
                         remember: true,
                     }}
-                    // onFinish={onFinish}
+                    onFinish={onFinish}
                     // onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
@@ -55,7 +66,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
                     </Form.Item>
                     <Form.Item
 
-                        name="sale"
+                        name="industries"
                         rules={[
                             {
                                 required: true,
@@ -76,7 +87,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
 
                     <Form.Item
 
-                        name="sale"
+                        name="States"
                         rules={[
                             {
                                 required: true,
@@ -96,7 +107,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
                     </Form.Item>
                     <Form.Item
 
-                        name="sale"
+                        name="coverarge"
                         rules={[
                             {
                                 required: true,
@@ -107,7 +118,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
                         <Select
                             mode="multiple"
                             size={12}
-                            placeholder="Choose States"
+                            placeholder="Choose Coverage Types"
 
                             // onChange={handleChange}
                             style={{ width: '100%' }}
@@ -116,9 +127,26 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel }) {
                     </Form.Item>
 
 
+                    <Form.Item
 
-
-
+                        name="status"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please select status!',
+                            },
+                        ]}
+                    >
+                        <Select
+                            size={12}
+                            defaultValue="active"
+                            // onChange={handleChange}
+                            style={{
+                                width: 200,
+                            }}
+                            options={StatusOptions}
+                        />
+                    </Form.Item>
                     <Form.Item
                         wrapperCol={{
                             offset: 8,

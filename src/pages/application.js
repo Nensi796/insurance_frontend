@@ -4,51 +4,47 @@ import CustomButton from "../Components/Buttons/Button";
 import { CreateApplicationModal } from "../Components/modals/createApplicationModal";
 import Table from "../Components/Table/Table";
 
-const columns = [{
-    key: "ApplicationName",
+const columns = [
+    {
+        key: "application_name",
 
-    title: "Application Name",
+        title: "Asscociated Programme",
 
-},
-{
-    key: "associated_programme",
+    },
+    {
+        key: "programm_name",
 
-    title: "Asscociated Programme",
+        title: "Status",
 
-},
-{
-    key: "status",
+    },
+    {
+        key: "status",
 
-    title: "Status",
-
-},
-{
-    key: "current_version",
-
-    title: "Current Version",
-    render: () => (
-        <a href="#">Link Address</a>
-    )
-}
+        title: "Current Version",
+        render: () => (
+            <a href="#">Link Address</a>
+        )
+    }
     , {
-    key: "",
+        key: "",
 
-    title: "Action",
-    render: () => (
-        //    <MoreHorizIcon/>
+        title: "Action",
+        render: () => (
+            //    <MoreHorizIcon/>
 
-        <h1>sdds</h1>
-    )
-}];
+            <h1>sdds</h1>
+        )
+    }];
 
 const Applications = () => {
     const [openModel, setOpenModal] = useState(false);
+    const [data, setData] = useState([]);
+    console.log(data);
     return (
         <Box>
             <CustomButton type="primary" title="Create Applocation" handleClick={() => setOpenModal(true)} />
-            <Table columns={columns} data={[{ ApplicationName: "test-1", associated_programme: "Computer Science", status: 12300052158, current_version: 123435 },
-            { ApplicationName: "test-2", associated_programme: "Computer Science", status: 12300052158, current_version: 123435 },]} />
-            <CreateApplicationModal openModal={openModel} handleClose={() => setOpenModal(false)} handleOk={() => setOpenModal(false)} />
+            <Table columns={columns} data={data} />
+            <CreateApplicationModal getData={(value) => setData(value)} openModal={openModel} handleClose={() => setOpenModal(false)} handleOk={() => setOpenModal(false)} />
         </Box>
     )
 }
