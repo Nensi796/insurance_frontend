@@ -1,53 +1,27 @@
-import React, { useState } from 'react';
-import { DialogActions, DialogTitle, FormControl, InputLabel, MenuItem, DialogContent, Select, DialogContentText, Dialog, TextField, Box } from '@mui/material';
+import React,{useState} from 'react';
+import { DialogActions, DialogTitle, FormControl, InputLabel, MenuItem, DialogContent, Select,  Dialog, TextField, Box } from '@mui/material';
 import CustomButton from '../Buttons/Button';
-import axios from "axios";
 
 
-export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getData }) => {
+
+export const CreateAgencyModal = ({ openModal, handleOk, handleClose ,getData}) => {
     const [applicationData, setApplicationData] = useState({ application_name: "", associated_programme: "", status: "" })
     const [applications, setApplications] = useState([])
     const handleOnChange = (e) => {
         setApplicationData({ ...applicationData, [e.target.name]: e.target.value })
+
     }
 
     const handleSubmit = () => {
         setApplications([...applications, applicationData]);
         getData([...applications, applicationData]);
-
-
-
-        axios.post('http://localhost:3002/createApplication', {
-            CovrageType: applicationData?.application_name,
-            ProgramName: applicationData?.associated_programme,
-            Status: applicationData?.status,
-        
-        })
-            .then(function (response) {
-                console.log(response);
-                axios.get('http://localhost:3002/Application').then((response) => {
-                    console.log(response.data);
-                    getData(response.data);
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
+        handleOk();
     }
-    // console.log(applicationData);
-
-    
-
     return (
         <div>
-            <Dialog maxWidth={900} open={openModal} onClose={handleClose}>
+            <Dialog open={openModal} onClose={handleClose}>
                 <DialogTitle>Subscribe</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We
-                        will send updates occasionally.
-                    </DialogContentText>
                     <Box className="flex justify-around">
                         <TextField
                             onChange={(e) => handleOnChange(e)}
@@ -68,7 +42,7 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
                                 onChange={(e) => handleOnChange(e)}
                                 value={applicationData.associated_programme}
                                 label="Programme Name"
-  
+
                             >
                                 <MenuItem value="Ten">Ten</MenuItem>
                                 <MenuItem value="Twenty">Twenty</MenuItem>
@@ -84,17 +58,20 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
                                 onChange={(e) => handleOnChange(e)}
                                 value={applicationData.status}
                                 label="Status"
+                                
                             >
                                 <MenuItem value="Active">Active</MenuItem>
                                 <MenuItem value="inActive">inActive</MenuItem>
 
                             </Select>
                         </FormControl>
+
+
                     </Box>
                 </DialogContent>
                 <DialogActions>
-                    <CustomButton type="primary" title="Cancel" handleClick={() => handleClose()} />
-                    <CustomButton type="primary" title="Create" handleClick={() => handleSubmit()} />
+                    <CustomButton type="primary" title="Cancel" handleClick={() => handleSubmit()} />
+                    <CustomButton type="primary" title="Create" handleClick={handleOk} />
                 </DialogActions>
             </Dialog>
         </div>

@@ -5,8 +5,6 @@ const Programs = () => {
     return (
         <div>
             <ProgramsTabs />
-            
-            
         </div>
     );
 };

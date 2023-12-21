@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CustomButton from '../../Components/Buttons/Button';
 import { Modal, Form, Input, Select } from "antd";
+import axios from "axios";
 
 
 const IndustriesOptions = [{ value: "Chemical", label: "Chemical" }, { value: "Mechanical", label: "Mechanical" }]
@@ -12,19 +13,44 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
 
 
     const [programs, setPrograms] = useState([])
+    const [programData, setProgramData] = useState({})
 
+
+ 
     const onFinish = (values) => {
+
+        setProgramData(values);
+        console.log(programData);
         console.log(values);
         setPrograms([...programs, values])
-        // lifting statup 
+        
         getData([...programs, values])
+        // lifting statup 
+
+        axios.post('http://localhost:3002/program', {
+            CovrageType: values?.CovrageType,
+            ProgramName: values?.ProgramName,
+            Status: values?.Status,
+            chooseindustry: values?.chooseindustry,
+            choosestates: values?.choosestates
+        })
+            .then(function (response) {
+                console.log(response);
+                axios.get('http://localhost:3002/programDataList').then((response) => {
+                    console.log(response.data);
+                    getData(response.data)
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
     }
     console.log(programs);
     return (
         <>
-
             <Modal
-
                 open={open}
                 title="Create Programme"
                 onOk={handleOk}
@@ -54,7 +80,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
                 >
                     <Form.Item
 
-                        name="username"
+                        name="ProgramName"
                         rules={[
                             {
                                 required: true,
@@ -66,7 +92,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
                     </Form.Item>
                     <Form.Item
 
-                        name="industries"
+                        name="chooseindustry"
                         rules={[
                             {
                                 required: true,
@@ -87,7 +113,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
 
                     <Form.Item
 
-                        name="States"
+                        name="choosestates"
                         rules={[
                             {
                                 required: true,
@@ -107,7 +133,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
                     </Form.Item>
                     <Form.Item
 
-                        name="coverarge"
+                        name="CovrageType"
                         rules={[
                             {
                                 required: true,
@@ -129,7 +155,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
 
                     <Form.Item
 
-                        name="status"
+                        name="Status"
                         rules={[
                             {
                                 required: true,

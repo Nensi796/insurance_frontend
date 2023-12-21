@@ -13,7 +13,7 @@ export default function Table({
     isTransactionDetailsTable,
 }) {
     return (
-        <div className={className}>
+        <div className={className} style={{width:'100%'}}>
             <table
                 className={`${isSidebarTable ? '' : 'tableSection'} ${className
                     }`}

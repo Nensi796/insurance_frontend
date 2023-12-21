@@ -8,7 +8,7 @@ import MainHeader from './Components/Header/Header';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Routess from './routess';
-import logo from './assets/logo.png';
+import logo from './assets/dreamSpot.png';
 const { Header, Content, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -41,8 +41,8 @@ const Sidebar = () => {
                 collapsed={collapsed}
                 onCollapse={value => setCollapsed(value)}
             >
-                <div className="logo">
-                    <img src={logo} alt="imagggggg" />
+                <div className="logo my-5">
+                    <img src={logo} alt="imagggggg" style={{height:"50px"}} />
                 </div>
                 <Menu
                     onClick={e => {
@@ -52,7 +52,7 @@ const Sidebar = () => {
                     theme="light"
                     mode="inline"
                     items={items}
-                />
+                />  
             </Sider>
 
             <Layout>

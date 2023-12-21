@@ -9,6 +9,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
+  
   plugins: ["react"],
   rules: {
     "react/prop-types": "off",
