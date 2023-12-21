@@ -33,7 +33,7 @@ const Agency = () => {
         <Box>
             <CustomButton type="primary" title="Create Applocation" handleClick={() => setOpenModal(true)} />
             <Table columns={columns} data={[{ ApplicationName: "test-1", associated_programme: "Computer Science", status: 12300052158,},
-            { ApplicationName: "test-2", associated_programme: "Computer Science", status: 12300052158, },]} />
+            { ApplicationName: "test-3", associated_programme: "Computer Science", status: 12300052158, },]} />
             <CreateAgencyModal openModal={openModel} handleClose={() => setOpenModal(false)} handleOk={() => setOpenModal(false)} />
         </Box>
     )
