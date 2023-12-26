@@ -3,17 +3,17 @@ import { Box, Popover, FormControl, InputLabel, TextField, MenuItem, Select } fr
 import CustomButton from '../Buttons/Button';
 
 
-const FilterModal = ({ open, anchorEl, handleClose, getFilterData }) => {
-    const [applicationData, setApplicationData] = useState({ application_name: "", associated_programme: "", status: "" })
+const AgencyFilterModal = ({ open, anchorEl, handleClose, getFilterData }) => {
+    const [agencyData, setAgencyData] = useState({ application_name: "",associated_programme: "", status: "" })
     const id = open ? 'simple-popover' : undefined;
     const handleOnChange = (e) => {
-        setApplicationData({ ...applicationData, [e.target.name]: e.target.value })
+        setAgencyData({ ...agencyData, [e.target.name]: e.target.value })
 
     }
     const handleSubmit = () => {
 
-        getFilterData(applicationData);
-        handleClose()
+        getFilterData(agencyData);
+        handleClose();
     }
     return (
         <Popover
@@ -29,7 +29,7 @@ const FilterModal = ({ open, anchorEl, handleClose, getFilterData }) => {
             <Box className="flex justify-center flex-col">
                 <TextField
                     onChange={(e) => handleOnChange(e)}
-                    value={applicationData?.application_name}
+                    value={agencyData?.application_name}
                     name="application_name"
                     required
                     id="outlined-required"
@@ -44,7 +44,7 @@ const FilterModal = ({ open, anchorEl, handleClose, getFilterData }) => {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         onChange={(e) => handleOnChange(e)}
-                        value={applicationData.associated_programme}
+                        value={agencyData.associated_programme}
                         label="Programme Name"
 
                     >
@@ -60,7 +60,7 @@ const FilterModal = ({ open, anchorEl, handleClose, getFilterData }) => {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         onChange={(e) => handleOnChange(e)}
-                        value={applicationData.status}
+                        value={agencyData.status}
                         label="Status"
 
                     >
@@ -80,4 +80,4 @@ const FilterModal = ({ open, anchorEl, handleClose, getFilterData }) => {
         </Popover>
     )
 }
-export default FilterModal;
+export default AgencyFilterModal;

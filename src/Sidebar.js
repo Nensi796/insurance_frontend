@@ -1,8 +1,4 @@
-import {
-    DesktopOutlined,
-    FileOutlined,
-    PieChartOutlined,
-} from '@ant-design/icons';
+import {DesktopOutlined,FileOutlined,PieChartOutlined,} from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import MainHeader from './Components/Header/Header';
 import React, { useState } from 'react';
@@ -23,7 +19,6 @@ const items = [
     getItem('Agencies', 'Agencies', <DesktopOutlined />),
     getItem('MGAs', 'MGAs', <DesktopOutlined />),
     getItem('Quote Requests', 'Quote Requests', <DesktopOutlined />),
-    getItem('Network Updates', 'Network Updates', <DesktopOutlined />),
     getItem('Network Updates', 'Network Updates', <DesktopOutlined />),
 
     getItem('Files', '7', <FileOutlined />),

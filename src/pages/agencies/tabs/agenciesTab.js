@@ -1,13 +1,14 @@
 import { Tabs } from "antd";
 import React from "react";
+import { CreateAgencies } from "../createAgencies";
 
 const AgenciesTabs = () => (
     <Tabs defaultActiveKey="Agencies">
         <Tabs.TabPane tab="Agencies" key="Agencies">
-            Agencies{''}  
+            <CreateAgencies />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Agents" key="Agents">
-            Agents{''}  
+            Agents{''}
         </Tabs.TabPane>
     </Tabs>
 )

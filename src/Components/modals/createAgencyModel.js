@@ -4,18 +4,18 @@ import CustomButton from '../Buttons/Button';
 
 
 
-export const CreateAgencyModal = ({ openModal, handleOk, handleClose ,getData}) => {
-    const [applicationData, setApplicationData] = useState({ application_name: "", associated_programme: "", status: "" })
-    const [applications, setApplications] = useState([])
+export const CreateAgencyModal = ({ openModal,  handleClose ,getData}) => {
+    const [agencyData, setAgencyData] = useState({ application_name: "", associated_programme: "", status: "" })
+    const [agencys, setAgencys] = useState([])
     const handleOnChange = (e) => {
-        setApplicationData({ ...applicationData, [e.target.name]: e.target.value })
+        setAgencyData({ ...agencyData, [e.target.name]: e.target.value })
 
     }
 
     const handleSubmit = () => {
-        setApplications([...applications, applicationData]);
-        getData([...applications, applicationData]);
-        handleOk();
+        setAgencys([...agencys, agencyData]);
+        getData([...agencys, agencyData]);
+        
     }
     return (
         <div>
@@ -25,7 +25,7 @@ export const CreateAgencyModal = ({ openModal, handleOk, handleClose ,getData}) 
                     <Box className="flex justify-around">
                         <TextField
                             onChange={(e) => handleOnChange(e)}
-                            value={applicationData?.application_name}
+                            value={agencyData?.application_name}
                             name="application_name"
                             required
                             id="outlined-required"
@@ -40,7 +40,7 @@ export const CreateAgencyModal = ({ openModal, handleOk, handleClose ,getData}) 
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onChange={(e) => handleOnChange(e)}
-                                value={applicationData.associated_programme}
+                                value={agencyData.associated_programme}
                                 label="Programme Name"
 
                             >
@@ -56,7 +56,7 @@ export const CreateAgencyModal = ({ openModal, handleOk, handleClose ,getData}) 
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onChange={(e) => handleOnChange(e)}
-                                value={applicationData.status}
+                                value={agencyData.status}
                                 label="Status"
                                 
                             >
@@ -70,8 +70,8 @@ export const CreateAgencyModal = ({ openModal, handleOk, handleClose ,getData}) 
                     </Box>
                 </DialogContent>
                 <DialogActions>
-                    <CustomButton type="primary" title="Cancel" handleClick={() => handleSubmit()} />
-                    <CustomButton type="primary" title="Create" handleClick={handleOk} />
+                    <CustomButton type="primary" title="Cancel" handleClick={() => handleClose()} />
+                    <CustomButton type="primary" title="Create" handleClick={() => handleSubmit()} />
                 </DialogActions>
             </Dialog>
         </div>
