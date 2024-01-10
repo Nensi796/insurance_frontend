@@ -1,43 +1,26 @@
 import React, { useState } from 'react';
 import { DialogActions, DialogTitle, FormControl, InputLabel, MenuItem, DialogContent, Select, DialogContentText, Dialog, TextField, Box } from '@mui/material';
 import CustomButton from '../Buttons/Button';
-import axios from "axios";
 
 
-export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getData }) => {
-    const [applicationData, setApplicationData] = useState({ application_name: "", associated_programme: "", status: "" })
-    const [applications, setApplications] = useState([])
+export const AgenciesModel = ({ openModal, handleOk, handleClose, getData }) => {
+    const [agenciesData, setAgenciesData] = useState({ agencies_name: "", agencies_number: "",agencies_city:"", status: "" })
+    const [agencies, setAgencies] = useState([])
     const handleOnChange = (e) => {
-        setApplicationData({ ...applicationData, [e.target.name]: e.target.value })
+        setAgenciesData({ ...agenciesData, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = () => {
-        setApplications([...applications, applicationData]);
-        getData([...applications, applicationData]);
+        setAgencies([...agencies, agenciesData]);
+        getData([...agencies, agenciesData]);
 
 
 
-        axios.post('http://localhost:3002/createApplication', {
-            CovrageType: applicationData?.application_name,
-            ProgramName: applicationData?.associated_programme,
-            Status: applicationData?.status,
-        
-        })
-            .then(function (response) {
-                console.log(response);
-                axios.get('http://localhost:3002/Application').then((response) => {
-                    console.log(response.data);
-                    getData(response.data);
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
 
-    }   
+    }
     //  console.log(applicationData);
 
-    
+
 
     return (
         <div>
@@ -51,28 +34,40 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
                     <Box className="flex justify-around">
                         <TextField
                             onChange={(e) => handleOnChange(e)}
-                            value={applicationData?.application_name}
-                            name="application_name"
+                            value={agenciesData?.agencies_name}
+                            name="agencies_name"
                             required
                             id="outlined-required"
-                            label="Required"
+                            label="agencies_name"
 
                         />
 
+                        <TextField
+                            type='number'
+                            onChange={(e) => handleOnChange(e)}
+                            value={agenciesData?.agencies_number}
+                            name="agencies_number"
+                            required
+                            id="outlined-required"
+                            label="agencies_number"
+
+                        />
+                    </Box>
+                    <Box className="flex justify-around mt-5">
                         <FormControl fullWidth className='!w-[300px]'>
                             <InputLabel id="demo-simple-select-label">Programme Name</InputLabel>
                             <Select
-                                name="associated_programme"
+                                name="agencies_city"
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onChange={(e) => handleOnChange(e)}
-                                value={applicationData.associated_programme}
-                                label="Programme Name"
-  
+                                value={agenciesData.agencies_city}
+                                label="agencies_city"
+
                             >
-                                <MenuItem value="Ten">Ten</MenuItem>
-                                <MenuItem value="Twenty">Twenty</MenuItem>
-                                <MenuItem value="Thirty">Thirty</MenuItem>
+                                <MenuItem value="Rajkot">Rajkot</MenuItem>
+                                <MenuItem value="Surat">Surat</MenuItem>
+                                <MenuItem value="Baroda">Baroda</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl fullWidth className='!w-[300px]'>
@@ -82,7 +77,7 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onChange={(e) => handleOnChange(e)}
-                                value={applicationData.status}
+                                value={agenciesData.status}
                                 label="Status"
                             >
                                 <MenuItem value="Active">Active</MenuItem>
@@ -97,6 +92,6 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
                     <CustomButton type="primary" title="Create" handleClick={() => handleSubmit()} />
                 </DialogActions>
             </Dialog>
-        </div>
+        </div >
     )
 }

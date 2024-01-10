@@ -45,7 +45,8 @@ export function TableRow({
                             );
                         })}
                     </tr>
-                ))}
+                ))
+            }
             {!data?.length && (
                 <tr>
                     <td colSpan={6} className="py-4 text-center">

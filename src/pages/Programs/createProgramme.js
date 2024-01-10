@@ -1,14 +1,38 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import CustomButton from '../../Components/Buttons/Button';
-import { CreateProgrammeModel } from '../../Components/modals/modal';
+import { CreateProgrammeModel } from '../../Components/modals/programModal';
 import Table from '../../Components/Table/Table';
 import axios from 'axios';
 import { Box } from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import ProgramFilterModal from '../../Components/modals/programFilterModel';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Popover from '@mui/material/Popover';
+
 
 export const CreateProgramme = () => {
 
+  
+    const [openModal, setOpenModal] = useState(false);
+    const [data, setData] = useState([]);
+    const handleOk = () => {
+        setOpenModal(false)
+    }
+
+    const [filterData, setFilterData] = useState(null)
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+    const handleClickPop = (event) => {
+        setAnchor(event.currentTarget);
+      
+
+      };
+
+      const handleClosePop = () => {
+        setAnchor(null);
+      };
     const columns = [{
         key: "ProgramName",
 
@@ -19,7 +43,7 @@ export const CreateProgramme = () => {
 
         title: "Coverage Types",
         render: (_, item) => (
-            //    <MoreHorizIcon/>
+
 
             <ol>
                 {item?.CovrageType?.map((val, index) => {
@@ -64,19 +88,26 @@ export const CreateProgramme = () => {
                 </ul>
             )
         }
+    },
+    {
+        key: "",
+        title: 'Action',
+        render: () => {
+
+            return (
+                <>
+                    <MoreHorizIcon className='curso r-pointer' aria-describedby={id}  onClick={handleClickPop} />
+                    
+                    
+                </>
+
+            )
+        }
     }
+
 
     ];
 
-    const [openModal, setOpenModal] = useState(false);
-    const [data, setData] = useState([]);
-    const handleOk = () => {
-        setOpenModal(false)
-    }
-
-    const [filterData, setFilterData] = useState(null)
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -91,8 +122,7 @@ export const CreateProgramme = () => {
 
         if (filterData) {
             const newData = data?.filter((item) => item?.ProgramName === filterData?.program_name
-                || item?.Status === filterData?.
-                    Status
+                || item?.Status === filterData?.Status
             )
             return newData;
         }
@@ -104,7 +134,7 @@ export const CreateProgramme = () => {
 
 
     const getData = () => {
-        axios.get('http://localhost:3002/programDataList').then((response) => {
+        axios.get('http://localhost:8081/get-all').then((response) => {
             console.log(response.data);
             setData(response.data)
         });
@@ -115,8 +145,17 @@ export const CreateProgramme = () => {
     }, [])
 
     console.log("filterData", filterData);
-
     const open = Boolean(anchorEl);
+
+
+    const [anchor, setAnchor] = React.useState(null);
+
+
+   
+
+    const open1 = Boolean(anchor);
+
+    const id = open1 ? 'simple-popover' : undefined;
 
     return (
         <div>
@@ -127,6 +166,19 @@ export const CreateProgramme = () => {
             </Box>
             <Table columns={columns} data={updatedData} />
             <CreateProgrammeModel getData={(values) => setData(values)} open={openModal} handleCancel={() => setOpenModal(false)} handleOk={handleOk} />
+            <Popover
+                        id={id}
+                        open={open1}
+                        anchorEl={anchor}
+                        onClose={handleClosePop}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                    >
+                        <CustomButton handleClick={() => setOpenModal(true)} title="Edit"/>
+                    </Popover>
         </div>
+        
     )
 }

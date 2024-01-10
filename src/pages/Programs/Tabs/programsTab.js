@@ -1,7 +1,7 @@
 import React from 'react';
 import './Tabs.scss';
-import Applications from '../../application';
-import Agency from '../../agency';
+import Applications from '../application';
+import Agency from '../agency';
 import { Tabs } from 'antd';
 import { CreateProgramme } from '../createProgramme';
 

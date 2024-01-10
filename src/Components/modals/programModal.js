@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomButton from '../../Components/Buttons/Button';
+import CustomButton from '../Buttons/Button';
 import { Modal, Form, Input, Select } from "antd";
 import axios from "axios";
 
@@ -27,7 +27,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
         getData([...programs, values])
         // lifting statup 
 
-        axios.post('http://localhost:3002/program', {
+        axios.post('http://localhost:8081/creates', {
             CovrageType: values?.CovrageType,
             ProgramName: values?.ProgramName,
             Status: values?.Status,
@@ -36,7 +36,7 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
         })
             .then(function (response) {
                 console.log(response);
-                axios.get('http://localhost:3002/programDataList').then((response) => {
+                axios.get('http://localhost:8081/get-all').then((response) => {
                     console.log(response.data);
                     getData(response.data)
                 });
@@ -44,8 +44,6 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
             .catch(function (error) {
                 console.log(error);
             });
-
-
     }
     console.log(programs);
     return (

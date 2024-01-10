@@ -1,10 +1,10 @@
 import React, { useMemo, useState,useEffect } from "react";
 import { Box } from '@mui/material';
-import CustomButton from "../Components/Buttons/Button";
-import { CreateApplicationModal } from "../Components/modals/createApplicationModal";
-import Table from "../Components/Table/Table";
+import CustomButton from "../../Components/Buttons/Button";
+import { CreateApplicationModal } from "../../Components/modals/createApplicationModal";
+import Table from "../../Components/Table/Table";
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import FilterModal from "../Components/modals/filtermodal";
+import FilterModal from "../../Components/modals/applicationFilterModal";
 import axios from 'axios';
 
 const columns = [

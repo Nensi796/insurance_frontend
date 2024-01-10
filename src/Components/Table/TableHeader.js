@@ -1,7 +1,5 @@
-
 import './Table.css'
 import React from "react";
-
 
 
 export function TableHeader({

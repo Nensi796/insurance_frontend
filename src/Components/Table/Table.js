@@ -1,6 +1,5 @@
 import { TableHeader } from './TableHeader';
 import { TableRow } from './TableRow';
-
 import './Table.css'
 import React from "react";
 
@@ -15,8 +14,7 @@ export default function Table({
     return (
         <div className={className} style={{width:'100%'}}>
             <table
-                className={`${isSidebarTable ? '' : 'tableSection'} ${className
-                    }`}
+                className={`${isSidebarTable ? '' : 'tableSection'} ${className}`}
             >
                 <thead className="sticky top-0 z-10">
                     <TableHeader
