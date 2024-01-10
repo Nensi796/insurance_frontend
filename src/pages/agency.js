@@ -36,6 +36,7 @@ const Agency = () => {
             { ApplicationName: "test-3", associated_programme: "Computer Science", status: 12300052158, },]} />
             <CreateAgencyModal openModal={openModel} handleClose={() => setOpenModal(false)} handleOk={() => setOpenModal(false)} />
         </Box>
+        
     )
 }
 export default Agency;

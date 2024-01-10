@@ -1,4 +1,4 @@
-import React, { useMemo, useState,useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Box } from '@mui/material';
 import CustomButton from "../Components/Buttons/Button";
 import { CreateApplicationModal } from "../Components/modals/createApplicationModal";
@@ -44,7 +44,7 @@ const columns = [
             <h1>sdds</h1>
         )
     }];
-  
+
 const Applications = () => {
 
     const [openModel, setOpenModal] = useState(false);
@@ -82,13 +82,10 @@ const Applications = () => {
                 || item?.application_name.toLocaleLowerCase() === filterData?.application_name?.toLocaleLowerCase())
             return updatedStatusData
         };
-
-
         return data
-
     }, [filterData, data]);
 
-    
+
 
     const getData = () => {
         axios.get('http://localhost:3002/Application').then((response) => {

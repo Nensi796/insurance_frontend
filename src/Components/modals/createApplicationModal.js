@@ -10,7 +10,7 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
     const handleOnChange = (e) => {
         setApplicationData({ ...applicationData, [e.target.name]: e.target.value })
     }
-
+ 
     const handleSubmit = () => {
         setApplications([...applications, applicationData]);
         getData([...applications, applicationData]);
@@ -45,8 +45,7 @@ export const CreateApplicationModal = ({ openModal, handleOk, handleClose, getDa
                 <DialogTitle>Subscribe</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We
-                        will send updates occasionally.
+                 
                     </DialogContentText>
                     <Box className="flex justify-around">
                         <TextField

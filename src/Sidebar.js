@@ -24,7 +24,6 @@ const items = [
     getItem('MGAs', 'MGAs', <DesktopOutlined />),
     getItem('Quote Requests', 'Quote Requests', <DesktopOutlined />),
     getItem('Network Updates', 'Network Updates', <DesktopOutlined />),
-    getItem('Network Updates', 'Network Updates', <DesktopOutlined />),
 
     getItem('Files', '7', <FileOutlined />),
 ];

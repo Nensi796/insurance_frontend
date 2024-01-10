@@ -12,6 +12,7 @@ module.exports = {
   
   plugins: ["react"],
   rules: {
+    "debugger":"on",
     "react/prop-types": "off",
   },
 };

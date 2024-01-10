@@ -4,6 +4,8 @@ import Applications from '../../application';
 import Agency from '../../agency';
 import { Tabs } from 'antd';
 import { CreateProgramme } from '../createProgramme';
+import MGA from '../../MGA';
+import Comision from '../../comision';
 
 
 const ProgramsTabs = () => (
@@ -18,10 +20,10 @@ const ProgramsTabs = () => (
             <Agency />
         </Tabs.TabPane>{' '}
         <Tabs.TabPane tab="Authorized MGA" key="Authorized MGA">
-            Authorized{' '}
+            <MGA />
         </Tabs.TabPane>{' '}
         <Tabs.TabPane tab="Commision" key="Commision">
-            Commision{' '}
+            <Comision />
         </Tabs.TabPane>
     </Tabs>
 );

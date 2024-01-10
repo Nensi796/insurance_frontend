@@ -16,16 +16,16 @@ export function CreateProgrammeModel({ open, handleOk, handleCancel, getData }) 
     const [programData, setProgramData] = useState({})
 
 
- 
+
     const onFinish = (values) => {
 
         setProgramData(values);
-        console.log(programData);
+        console.log(programDat34a);
         console.log(values);
         setPrograms([...programs, values])
-        
+
         getData([...programs, values])
-        // lifting statup 
+        // lifting statup
 
         axios.post('http://localhost:3002/program', {
             CovrageType: values?.CovrageType,
